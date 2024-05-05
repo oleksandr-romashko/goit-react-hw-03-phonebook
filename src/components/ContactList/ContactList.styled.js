@@ -17,7 +17,7 @@ export const Item = styled('li')({
   '&:not(:first-child) ': {
     marginTop: '32px',
   },
-  '& > *': {
+  '& > div': {
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
