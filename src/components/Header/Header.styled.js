@@ -8,8 +8,8 @@ const Header = styled('p')({
   maxMidth: '100%',
   paddingTop: '16px',
   paddingBottom: '12px',
-  paddingLeft: '104px',
-  paddingRight: '104px',
+  paddingLeft: '108px',
+  paddingRight: '108px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'flex-end',
@@ -22,7 +22,7 @@ const Header = styled('p')({
   '& > svg': {
     position: 'absolute',
     top: '50%',
-    right: '12px',
+    right: '16px',
     transform: 'translateY(-50%)',
   },
 });
