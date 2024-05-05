@@ -5,7 +5,6 @@ import styled from 'styled-components';
  */
 export const Form = styled('form')(props => {
   return {
-    width: '100%',
     maxWidth: '677px',
     display: 'flex',
     flexDirection: 'column',
