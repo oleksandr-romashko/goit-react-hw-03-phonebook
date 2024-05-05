@@ -25,14 +25,15 @@ class Phonebook extends Component {
   /**
    * Adds contact to the list of contacts.
    * @param {string} name Name of the contact.
-   * @param {string} number Phone number of the contact. 
+   * @param {string} number Phone number of the contact.
+   * @returns {boolean} True if added contact successfully or false otherwise.
    */
   addContact = (name, number) => {
     const isExist = this.state.contacts.some(({ name: existingName }) =>
       existingName.toLowerCase() === name.toLowerCase());
     if (isExist) {
       alert(`${name} is already in contacts.`);
-      return;
+      return false;
     }
 
     const id = nanoid();
@@ -42,6 +43,8 @@ class Phonebook extends Component {
         contacts: [contact, ...prevState.contacts],
       }
     ))
+
+    return true;
   };
 
   /**
@@ -101,7 +104,6 @@ class Phonebook extends Component {
       </Wrapper>
     );
   }
-
 }
 
 export default Phonebook;

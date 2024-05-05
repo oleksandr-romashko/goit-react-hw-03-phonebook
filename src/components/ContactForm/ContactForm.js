@@ -16,7 +16,8 @@ const PHONE_NUMBER_PATTERN_REGEX =
   '\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}';
 
 /**
- * Form to add new contact.
+ * Form to handle contact form elements.
+ * Clears form elements if submit was successful.
  * @param {callback} props.onSubmit Callback to handle form submit.
  * @returns {React.Component} Form component.
  */
@@ -52,12 +53,14 @@ class ContactForm extends React.Component {
       return;
     }
 
-    this.props.onSubmit(name, number);
+    const isSubmitSuccessful = this.props.onSubmit(name, number);
 
-    this.setState({
-      name: this.#defaultState.name,
-      number: this.#defaultState.number,
-    });
+    if (isSubmitSuccessful) {
+      this.setState({
+        name: this.#defaultState.name,
+        number: this.#defaultState.number,
+      });
+    }
   };
 
   /**
