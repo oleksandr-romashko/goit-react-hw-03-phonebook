@@ -17,7 +17,7 @@ class Phonebook extends Component {
   static LOCAL_STORAGE_KEY = "phonebook.contacts";
 
   #defaultState = {
-    contacts: [{id: '123', name:"Police", number: "158"}],
+    contacts: [],
     filter: '',
     error: {
       hasError: false,
