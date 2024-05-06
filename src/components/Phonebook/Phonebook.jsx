@@ -17,7 +17,7 @@ class Phonebook extends Component {
   static LOCAL_STORAGE_KEY = "phonebook.contacts";
 
   #defaultState = {
-    contacts: [],
+    contacts: [{id: '123', name:"Police", number: "158"}],
     filter: '',
     error: {
       hasError: false,
@@ -34,12 +34,15 @@ class Phonebook extends Component {
    * Loads contacts from the Local Storage and sets them to the state.
    */
   componentDidMount() {
-    let contacts = this.#defaultState.contacts;
-    try {
-      contacts = JSON.parse(localStorage.getItem(Phonebook.LOCAL_STORAGE_KEY));
-      contacts && contacts.length > 0 && this.setState({ contacts: contacts });
-    } catch (error) {
-      console.error("Error while reading and parsing contacts from Local Storage.\n", error);
+    const localStorageData = localStorage.getItem(Phonebook.LOCAL_STORAGE_KEY);
+    if (localStorageData) {
+      let localStorageContacts;
+      try {
+        localStorageContacts = JSON.parse(localStorageData);
+        localStorageContacts.length > 0 && this.setState({ contacts: [...localStorageContacts] });
+      } catch (error) {
+        console.error("Error while reading and parsing contacts from Local Storage.\n", error);
+      }
     }
   }
   
