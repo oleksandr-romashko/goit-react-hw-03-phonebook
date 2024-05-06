@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import ContactForm from 'components/ContactForm/ContactForm';
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
+import FallBackUI from 'components/FallBackUI/FallBackUI';
 
 import { Wrapper, Title, Subtitle } from './Phonebook.styled';
 
@@ -13,14 +14,53 @@ import textToNormalizedWordsArray from 'components/helpers/textToNormalizedWords
  * Phonebook to add and manage contacts.
  */
 class Phonebook extends Component {
+  static LOCAL_STORAGE_KEY = "phonebook.contacts";
+
   #defaultState = {
     contacts: [],
     filter: '',
+    error: {
+      hasError: false,
+      error: null,
+     }
   }
 
   state = {
     ...this.#defaultState,
   };
+
+  /**
+   * Handles after component was mounted.
+   * Loads contacts from the Local Storage and sets them to the state.
+   */
+  componentDidMount() {
+    let contacts = this.#defaultState.contacts;
+    try {
+      contacts = JSON.parse(localStorage.getItem(Phonebook.LOCAL_STORAGE_KEY));
+      contacts && contacts.length > 0 && this.setState({ contacts: contacts });
+    } catch (error) {
+      console.error("Error while reading and parsing contacts from Local Storage.\n", error);
+    }
+  }
+  
+  /**
+   * Handles component update.
+   * Writed contacts to the Local Storage.
+   * @param {object} prevState 
+   */
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      localStorage.setItem(Phonebook.LOCAL_STORAGE_KEY, JSON.stringify(this.state.contacts));
+    }
+  }
+
+  /**
+   * Handles errors in child components.
+   * @param {object} error The error that was thrown.
+   */
+  componentDidCatch(error) {
+    this.setState({ error: { hasError: true, error: error } });
+ }
 
   /**
    * Adds contact to the list of contacts.
@@ -87,6 +127,13 @@ class Phonebook extends Component {
    * @returns {React.Component}
    */
   render() {
+    if (this.state.error.hasError) {
+      // render fallback UI
+      return (
+        <FallBackUI error={this.state.error.error} />
+      );
+    }
+
     return (
       <Wrapper>
         <Title>Phonebook</Title>
