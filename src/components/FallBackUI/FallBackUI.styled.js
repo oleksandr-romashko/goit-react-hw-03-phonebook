@@ -9,18 +9,34 @@ export const FallbackWrapper = styled('div')({
 
   '& > h1': {
     marginTop: '32px',
-    fontSize: '36px',
+    fontSize: '28px',
   },
 
   '& p': {
-    fontSize: '24px',
+    fontSize: '20px',
+  },
+
+  '& p:last-child': {
+    fontSize: '16px',
+  },
+
+  '& a': {
+    color: 'hotpink',
+  },
+
+  '& a:visited': {
+    color: 'blue',
+  },
+
+  '& a:hover, a:focus': {
+    textDecoration: 'underline',
   },
 });
 
 export const Tips = styled('div')({
   marginTop: '40px',
   '& p:not(:first-child)': {
-    marginTop: '12px',
+    marginTop: '16px',
   },
 });
 
@@ -38,7 +54,7 @@ export const Cause = styled('details')({
     margin: '12px 24px',
     padding: '24px',
     borderRadius: '5px',
-    fontSize: '16px',
+    fontSize: '14px',
     color: 'white',
     background: '#30353b',
     boxShadow: '1px 1px 2px #bbbbbb',

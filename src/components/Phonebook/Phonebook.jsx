@@ -19,10 +19,7 @@ class Phonebook extends Component {
   #defaultState = {
     contacts: [],
     filter: '',
-    error: {
-      hasError: false,
-      error: null,
-     }
+    error: null,
   }
 
   state = {
@@ -41,6 +38,7 @@ class Phonebook extends Component {
         localStorageContacts = JSON.parse(localStorageData);
         localStorageContacts.length > 0 && this.setState({ contacts: [...localStorageContacts] });
       } catch (error) {
+        this.setState({ error: error });
         console.error("Error while reading and parsing contacts from Local Storage.\n", error);
       }
     }
@@ -62,7 +60,7 @@ class Phonebook extends Component {
    * @param {object} error The error that was thrown.
    */
   componentDidCatch(error) {
-    this.setState({ error: { hasError: true, error: error } });
+    this.setState({ error: error });
  }
 
   /**
@@ -130,10 +128,10 @@ class Phonebook extends Component {
    * @returns {React.Component}
    */
   render() {
-    if (this.state.error.hasError) {
+    if (this.state.error) {
       // render fallback UI
       return (
-        <FallBackUI error={this.state.error.error} />
+        <FallBackUI error={this.state.error} />
       );
     }
 
