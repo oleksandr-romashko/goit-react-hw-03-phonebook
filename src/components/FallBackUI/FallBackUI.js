@@ -13,7 +13,7 @@ const FallBackUI = ({ error }) => (
         <a
           href="https://github.com/oleksandr-romashko"
           target="_blank"
-          innerRef="noopener noreferrer"
+          rel="noopener noreferrer"
           aria-label="contact support"
         >
           contact me
