@@ -1,6 +1,6 @@
 import Page from "components/Page/Page.styled";
 import Header from "components/Header/Header.styled";
-import LocalStorageIcon from "./Icon/LocalStorageIcon";
+import { LocalStorageIcon } from "./Icons/LocalStorageIcon";
 import Phonebook from "components/Phonebook/Phonebook";
 
 export const App = () => {

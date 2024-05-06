@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Svg } from './SvgIcon.styled';
+import { Svg } from './BasicSvg.styled';
 
 /**
  * Styled svg icon.
@@ -12,7 +12,7 @@ import { Svg } from './SvgIcon.styled';
  *
  * @returns {React.Component} Icon component.
  */
-const SvgIcon = ({
+export const BasicSvg = ({
   width,
   height,
   fill,
@@ -35,7 +35,7 @@ const SvgIcon = ({
   );
 };
 
-SvgIcon.propTypes = {
+BasicSvg.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   fill: PropTypes.string,
@@ -43,5 +43,3 @@ SvgIcon.propTypes = {
   strokeWidth: PropTypes.string,
   viewBox: PropTypes.string,
 };
-
-export default SvgIcon;
