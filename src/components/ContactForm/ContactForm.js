@@ -13,7 +13,8 @@ import { Form, Label } from './ContactForm.styled';
 const CONTACT_NAME_PATTERN_REGEX =
   "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
 const PHONE_NUMBER_PATTERN_REGEX =
-  '\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}';
+  // eslint-disable-next-line no-useless-escape
+  "\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}";
 
 /**
  * Form to handle contact form elements.
