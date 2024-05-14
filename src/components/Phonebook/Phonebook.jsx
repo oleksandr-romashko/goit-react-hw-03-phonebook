@@ -118,9 +118,7 @@ class Phonebook extends Component {
    * @param {string} number Phone number of the contact. 
    */
   deleteContactById = (id) => {
-    const index = this.state.contacts.findIndex(el => el.id === id);
-    const contacts = this.state.contacts.filter((_, idx) => idx !== index);
-    this.setState({ contacts: contacts });
+    this.setState({ contacts: this.state.contacts.filter(el => el.id !== id)});
   }
 
   /**
